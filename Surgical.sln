@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1758
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Baglar", ".", "{787C5702-21AF-4AD6-9E0C-8862AD5BB9C3}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/Surgical"
+		Debug.AspNetCompiler.PhysicalPath = "..\Surgical\"
+		Debug.AspNetCompiler.TargetPath = "..\Surgical\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Surgical"
+		Release.AspNetCompiler.PhysicalPath = "..\Surgical\"
+		Release.AspNetCompiler.TargetPath = "..\Surgical\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58843"
+		SlnRelativePath = "..\Surgical\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{787C5702-21AF-4AD6-9E0C-8862AD5BB9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787C5702-21AF-4AD6-9E0C-8862AD5BB9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B45883A-17C9-4A05-9751-7D711B9856FE}
+	EndGlobalSection
+EndGlobal

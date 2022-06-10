@@ -1,0 +1,80 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MainMasterPage.master" AutoEventWireup="true" CodeFile="ChildMasterPage.master.cs" Inherits="ChildMasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+
+    <asp:Literal ID="ltrinside" runat="server"></asp:Literal>
+                    
+                    <div class="sect_header clearfix">
+                        <div class="breadcrumbs_section">
+                            <ul class="breadcrumbs">
+                                <li>
+                                    <a href="">
+                                        <asp:Literal ID="ltrlmainpage" runat="server"></asp:Literal> </a>
+                                </li>
+                                <li>
+                                    <a href=""><asp:Literal ID="ltrlorgancategory" runat="server"></asp:Literal> </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <asp:Literal ID="ltrlmain" runat="server"></asp:Literal> </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <asp:Literal ID="ltrlheader" runat="server"></asp:Literal> </a>
+                                </li>
+                            </ul>
+                            <div class="breadcrumb_items clearfix">
+                                <div class="update_time">
+                                    <asp:Literal ID="ltrtlupdate" runat="server"></asp:Literal>
+                                </div>
+                                <div class="eye_nw">
+                                    <asp:Literal ID="lrtlviewcount" runat="server"></asp:Literal>
+                                </div>
+                                <a href="#" class="share_top">
+                                    <asp:Literal ID="ltrlshare" runat="server"></asp:Literal>
+                                </a>
+                                <a href="javascript:void(0)" class="print" onclick="printContent('head_print')">
+                                     <asp:Literal ID="ltrlprint" runat="server"></asp:Literal>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section_body clearfix" id="head_print">
+                        <!-- Left part  -->
+                        <div class="section_wrap wrap_left ">
+
+                            <!-- Section Left Menu-->
+                            <div class="section_wrap wrap_left_menu ">
+                                <div class="section_body ">
+                                    <div class="left_menu_sect ">
+                                        <div class="left_menu_head ">
+                                            <h3 class="left_m_link ">HEMANGİOMA </h3>
+                                            <div class="left_mobile "> </div>
+                                        </div>
+                                        <div class="left_menu_body ">
+                                            <ul class="left_inner_menu ">
+                                                <asp:Literal ID="ltrlleftmenu" runat="server"></asp:Literal>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Section Left Menu-->
+
+                        </div>
+                        <!-- Left part  -->
+
+                           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+                    </div>
+
+
+
+</asp:Content>
+

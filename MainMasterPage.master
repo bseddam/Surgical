@@ -1,0 +1,242 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MainMasterPage.master.cs" Inherits="MainMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCK | Operation </title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/css/style.css?v2">
+    <link rel="stylesheet" href="/css/responsive.css?v2">
+    <!-- Jquery part -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+
+            <div class="page">
+                <header class="header">
+
+                    <div class="header_top clearfix">
+
+                        <div class="main_center clearfix">
+                            <div class="header_left clearfix">
+                                <div class="logo_sect clearfix">
+                                    <a href="/<%=Config.getLang(Page) %>/home" class="logo">
+                                        <div class="logo_img">
+                                            <img src="/img/logo.png" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="header_right clearfix">
+
+                                <nav class="nav_desk">
+                                    <ul class="hdr_menu clearfix">
+                                        <asp:Repeater ID="rptHeaderMenu" runat="server">
+                                            <ItemTemplate>
+
+                                                <li class=""><a href="<%#Eval("MenuURL").ToParseStr()%>"><%#Eval("Name").ToParseStr() %></a></li>
+
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
+                                </nav>
+                                <div class="desk_top">
+                                    <div class="top_icons">
+                                        <div class="src_icon icon_search"></div>
+                                        <div class="lang_sect">
+
+                                            <asp:Literal ID="ltrLink" runat="server"></asp:Literal>
+
+                                        </div>
+                                        <div class="menu_btn open"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Top search -->
+                                <div class="hd_search">
+                                    <div class="search_block">
+                                        <%--<form action="" method="get" class="search_form">--%>
+                                        <div class="search_row clearfix">
+                                            <asp:TextBox ID="txtsearchplatform" runat="server" class="inp_srch"></asp:TextBox>
+                                            <asp:Button ID="Button1" runat="server" Text="" class="inp_btn" />
+                                            <asp:Button ID="Button2" runat="server" Text="" class="close_src" />
+
+                                        </div>
+                                        <%--</form>--%>
+                                    </div>
+                                </div>
+                                <!-- Top search -->
+                            </div>
+
+
+                            <!-- Mobile menu -->
+                            <nav class="nav_mobile">
+                                <div class="mob_body">
+                                    <ul class="hdr_menu clearfix">
+                                        <asp:Repeater ID="rprightmenu" runat="server">
+                                            <ItemTemplate>
+                                                <li class=""><a href="<%#Eval("LnkURL").ToParseStr()%>"><%#Eval("Name").ToParseStr() %></a></li>
+
+                                                <%-- <li class="menu_active"><a href="#">Dərslik </a></li>--%>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+
+                                    </ul>
+                                </div>
+                                <div class="mob_ftr">
+                                    <ul class="hdr_menu clearfix">
+                                        <li class="menu_active"><a href="#">Platforma haqqında</a></li>
+                                        <li class=""><a href="#">Statik göstəricilər</a></li>
+                                        <li class=""><a href="#">Əlaqə</a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!-- Mobile menu -->
+
+                        </div>
+
+                    </div>
+                </header>
+
+                <main>
+                    <div class="section_wrap wrap_main_top">
+                        <div class="main_center clearfix">
+                            <div class="sect_header clearfix">
+                                <div class="sect_title">
+                                    <asp:Literal ID="ltrlsurcicalplatform" runat="server"></asp:Literal>
+                                </div>
+                                <div class="sect_result_title">
+                                    <asp:Literal ID="ltrlcateqory" runat="server"></asp:Literal>
+                                </div>
+                            </div>
+                            <div class="section_body">
+                                <div class="search_form_filters">
+                                    <div class="row">
+                                        <div class="odds_row">
+                                            <div class="col odds_col ">
+                                                <div class="lg_input ">
+                                                    <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <div class="col odds_col ">
+                                                <div class="lg_input ">
+                                                    <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <div class="col odds_col ">
+                                                <div class="lg_input ">
+                                                    <asp:DropDownList ID="ddlmain" runat="server" class="lg_inputs"></asp:DropDownList>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="odds_row">
+                                        <div class="lg_input ">
+                                            <asp:TextBox ID="txtsearchkeyword" runat="server" class="lg_inputs"></asp:TextBox>
+                                            <asp:Button ID="Button3" runat="server" class="search_submit" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section_wrap wrap_main">
+                        <div class="main_center clearfix">
+
+                            <!-- Section OUR MOVIES -->
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                            <!-- Section OUR MOVIES -->
+
+                        </div>
+                    </div>
+
+                </main>
+
+                <footer>
+
+                    <div class="footer_full clearfix">
+                        <div class="main_center clearfix">
+
+                            <div class="ftr_top clearfix">
+                                <ul class="socials clearfix">
+                                    <li>
+                                        <a href="" class="social_icon">
+                                            <span class="scl_icn">
+                                                <img src="/img/icons/fb.png" alt="">
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="social_icon">
+                                            <span class="scl_icn">
+                                                <img src="/img/icons/twt.png" alt="">
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="social_icon">
+                                            <span class="scl_icn">
+                                                <img src="/img/icons/insta.png" alt="">
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="social_icon">
+                                            <span class="scl_icn">
+                                                <img src="/img/icons/ytb.png" alt="">
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="copyrite_sect clearfix">
+                                <div class="copyrite">
+                                    <asp:Literal ID="ltrlcopyright" runat="server"></asp:Literal>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </footer>
+
+            </div>
+
+        </div>
+    </form>
+</body>
+<script src="/js/swiper.min.js"></script>
+<script src="/js/jquery.matchHeight-min.js"></script>
+<script src="/js/myjs.js?v2"></script>
+<script>
+    //Equal height
+    equalHeight();
+
+    function equalHeight(event) {
+        $('.wrap_operations .main_items').matchHeight({
+            property: 'min-height'
+        });
+    }
+    //Equal height
+
+</script>
+
+</html>
