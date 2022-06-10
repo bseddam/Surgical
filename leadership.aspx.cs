@@ -65,7 +65,7 @@ public partial class leadership : System.Web.UI.Page
                                             </div>
                                             <div class='odds_row '>
                                                 <div class='content_row row_inner ' style='" + drshortdetails["Slide"].ToParseStr() + @"'>
-                                                    <h3 class='title_second '>" + slide + @" </h3>
+                                                    <h3 class='title_second '>" + drshortdetails["Slide_Name"].ToParseStr() + @" </h3>
                                                     <div class='content_inner clearfix'>
 
                                                         <!-----------Gallery Start------------->
@@ -73,8 +73,6 @@ public partial class leadership : System.Web.UI.Page
 
                                                             <div class='demo-gallery'>
                                                                 <ul id='lightgallery' class='prosmotr_ul lightgallery'>
-
-
                                                                     <li data-responsive='/img/image1.png' data-src='/img/image1.png' data-sub-html=''>
                                                                         <a href=' '>
                                                                             <img src='/img/image1.png' alt='' class='product_gallery_images_upload img-responsive'>

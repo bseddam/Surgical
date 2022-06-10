@@ -263,7 +263,7 @@ HeaderID=@HeaderID and MainID=@MainID order by thsortby", SqlConn);
         try
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select Short_Name_"+lang+ " Short_Name,Detail_Name_" + lang +
+            SqlDataAdapter da = new SqlDataAdapter(@"select Slide_Name_" + lang + " Slide_Name,Short_Name_" + lang+ " Short_Name,Detail_Name_" + lang +
                 " Detail_Name,Adi_" + lang + @" as Name,InfoShort_" +lang + @" ShortName,
 InfoDetails_" +lang + @" DetailName,case when a.Short=0 then 'display:none;' else '' end Short,
 case when a.Detail=0 then 'display:none;' else '' end Detail,
@@ -297,7 +297,7 @@ HeaderID=@HeaderID and MainID=@MainID and TableHeaderID=@TableHeaderID order by 
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select OrganName_"+lang + @" +' '+CategoryName_"+lang + @"  orqcat,CategoryName_"+lang + @" ,OrganName_"+lang + @" ,ConnHeaderInformationID,FieldID,FieldNamesID,HeaderID,HeaderName_"+lang + @" ,InfoDetails_"+lang + @" ,InfoID
-,InfoShort_"+lang + @" ,LnkURL,MainID,Short,Detail,Slide,ShortView,DetailView,iSortBy
+,InfoShort_"+lang + @",LnkURL,MainID,Short,Detail,Slide,ShortView,DetailView,iSortBy
 ,hSortBy,TableHeaderID,thSortBy,fSortBy,TableHeader_"+lang + @" ,MainName_"+lang + @" ,OrganID,CategoryID
 ,Information_"+lang + @" ,Patalogy_"+lang + @" ,Serishte_"+lang + @" ,Seviyye_"+lang + @" ,Seviyye_telebe_"+lang + @" ,Seviyye_rezident_"+lang + @" 
 ,Kurs,Saat,XBT_Kodu,Acar_sozler_"+lang + @" ,DOI,URL
