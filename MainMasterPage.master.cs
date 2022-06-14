@@ -49,6 +49,8 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
         txtsearchkeyword.Attributes.Add("placeholder", db.GetMenuHeader(lang, 5).Rows[0]["Name"].ToParseStr());
         txtsearchplatform.Attributes.Add("placeholder", db.GetMenuHeader(lang, 2).Rows[0]["Name"].ToParseStr());
         
+
+
         componentsload(lang);
     }
     void componentsload(string lang)
@@ -104,5 +106,14 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
     protected void ddlorgans_SelectedIndexChanged(object sender, EventArgs e)
     {
         loadmain();
+    }
+
+    protected void btnctqsearch_Click(object sender, EventArgs e)
+    {
+        string lang = Config.getLang(Page);
+        if(ddlorgans.SelectedValue.ToParseInt()!=-1 && ddlcateqory.SelectedValue.ToParseInt() != -1 && ddlmain.SelectedValue.ToParseInt() != -1)
+        Config.Rd("/"+lang + "/leadership/"+ ddlorgans.SelectedValue.ToParseInt()+"/"+ ddlcateqory.SelectedValue.ToParseInt() + "/"
+            + ddlmain.SelectedValue.ToParseInt() + "/1");
+        
     }
 }

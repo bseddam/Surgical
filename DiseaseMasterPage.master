@@ -1,11 +1,10 @@
-﻿<%@ Master Language="C#" MasterPageFile="~/MainMasterPage.master" AutoEventWireup="true" CodeFile="ChildMasterPage.master.cs" Inherits="ChildMasterPage" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/MainMasterPage.master" AutoEventWireup="true" CodeFile="DiseaseMasterPage.master.cs" Inherits="DiseaseMasterPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-
-                    <div class="sect_header clearfix">
+     <div class="sect_header clearfix">
                         <div class="breadcrumbs_section">
                             <ul class="breadcrumbs">
                                 <li>
@@ -19,10 +18,7 @@
                                     <a href="">
                                         <asp:Literal ID="ltrlmain" runat="server"></asp:Literal> </a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        <asp:Literal ID="ltrlheader" runat="server"></asp:Literal> </a>
-                                </li>
+                               
                             </ul>
                             <div class="breadcrumb_items clearfix">
                                 <div class="update_time">
@@ -41,7 +37,8 @@
                         </div>
                     </div>
 
-                    <div class="section_body clearfix" id="head_print">
+
+    <div class="section_body clearfix" id="head_print">
                         <!-- Left part  -->
                         <div class="section_wrap wrap_left ">
 
@@ -51,13 +48,14 @@
                                     <div class="left_menu_sect ">
                                         <div class="left_menu_head ">
                                             <h3 class="left_m_link ">
-                                                <asp:Literal ID="ltrlmain1" runat="server"></asp:Literal></h3>
+                                                <asp:Literal ID="ltrlorgancategory1" runat="server"></asp:Literal> </h3>
                                             <div class="left_mobile "> </div>
                                         </div>
                                         <div class="left_menu_body ">
                                             <ul class="left_inner_menu ">
+
                                                 <asp:Literal ID="ltrlleftmenu" runat="server"></asp:Literal>
-                                                
+
                                             </ul>
                                         </div>
                                     </div>
@@ -69,11 +67,35 @@
                         </div>
                         <!-- Left part  -->
 
-                           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                        <!-- Right part  -->
+                        <div class="section_wrap wrap_right ">
+
+                            <!-- Section Right Container-->
+                            <div class="section_wrap wrap_container ">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                               
+                            </div>
+                            <!-- Section Right Container-->
+
+                           <%-- <div class="sect_footer clearfix">
+                                <div class="page_pagination clearfix">
+                                    <div class="pagin_left">
+                                        <a href="#" class="pagin_link">Geri</a>
+                                    </div>
+                                    <div class="pagin_right">
+                                        <a href="#" class="pagin_link">İrəli</a>
+                                    </div>
+                                </div>
+                            </div>--%>
+
+                        </div>
+                        <!-- Right part  -->
 
                     </div>
 
 
 
+
+     
 </asp:Content>
 

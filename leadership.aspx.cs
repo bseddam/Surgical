@@ -33,6 +33,20 @@ public partial class leadership : System.Web.UI.Page
             DataTable dtshortdetail = db.GetShortDetails(lang, categoryid, organid, mainid, headerid, drheader["TableHeaderID"].ToParseInt());
             foreach (DataRow drshortdetails in dtshortdetail.Rows)
             {
+                string slidetext = "";
+                DataTable dtslides = db.GetSlides(lang, drshortdetails["InfoID"].ToParseInt());
+                foreach (DataRow drslide in dtslides.Rows)
+                {
+                    slidetext = slidetext + @"<li data-responsive='/" + drslide["SlideURL"].ToParseStr() + @"' data-src='/" + drslide["SlideURL"].ToParseStr() + @"' data-sub-html=''>
+                                                                        <a href=' '>
+                                                                            <img src='/" + drslide["SlideURL"].ToParseStr() + @"' alt='' class='product_gallery_images_upload img-responsive'>
+                                                                            <div class='demo-gallery-poster'>
+                                                                                <img src='/img/icons/zoom.png'>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>";
+                }
+
                 shortdetail = shortdetail + @"<div class='odds_row '>
                                             <div class='odds_row '>
                                                 <div class='content_row '>
@@ -73,14 +87,8 @@ public partial class leadership : System.Web.UI.Page
 
                                                             <div class='demo-gallery'>
                                                                 <ul id='lightgallery' class='prosmotr_ul lightgallery'>
-                                                                    <li data-responsive='/img/image1.png' data-src='/img/image1.png' data-sub-html=''>
-                                                                        <a href=' '>
-                                                                            <img src='/img/image1.png' alt='' class='product_gallery_images_upload img-responsive'>
-                                                                            <div class='demo-gallery-poster'>
-                                                                                <img src='/img/icons/zoom.png'>
-                                                                            </div>
-                                                                        </a>
-                                                                    </li>
+                                                                    "+slidetext+@"
+                                                                   
                                                                     
                                                                 </ul>
                                                             </div>

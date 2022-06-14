@@ -129,12 +129,16 @@
                                         <div class="odds_row">
                                             <div class="col odds_col ">
                                                 <div class="lg_input ">
-                                                    <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
+                                                     
+                                                 <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
+                                              
                                                 </div>
                                             </div>
                                             <div class="col odds_col ">
                                                 <div class="lg_input ">
-                                                    <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
+                                                   
+                                                     <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
+                                               
                                                 </div>
                                             </div>
                                             <div class="col odds_col ">
@@ -147,7 +151,7 @@
                                     <div class="odds_row">
                                         <div class="lg_input ">
                                             <asp:TextBox ID="txtsearchkeyword" runat="server" class="lg_inputs"></asp:TextBox>
-                                            <asp:Button ID="Button3" runat="server" class="search_submit" />
+                                            <asp:Button ID="btnctqsearch" runat="server" class="search_submit" OnClick="btnctqsearch_Click" />
                                         </div>
                                     </div>
 

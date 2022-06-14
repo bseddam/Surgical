@@ -14,23 +14,23 @@
                                 <a href="#" class="main_items">
                                     <div class="opr_content">
                                         <div class="odds_row">
-                                            <div class="catg_title" style="background-color: #db8436;">
-                                                DƏRSLİK
+                                            <div class="catg_title" style="background-color: <%#Eval("headercolor").ToParseStr()%>;">
+                                                <%#Eval("HeaderName").ToParseStr()%>
                                             </div>
                                         </div>
                                         <div class="odds_row">
                                             <div class="catg_info">
-                                                MƏDƏ ƏMƏLİYYATLARI
+                                                <%#Eval("orqcat").ToParseStr()%>
                                             </div>
                                         </div>
                                         <div class="odds_row">
                                             <div class="opr_title">
-                                                MƏDƏ REZEKSİYASI
+                                                   <%#Eval("MainName").ToParseStr()%>
                                             </div>
                                         </div>
                                         <div class="odds_row">
                                             <div class="opr_info">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna eiusmod tempor incididunt ut labore et dolore magna
+                                            <%#Eval("Seviyye").ToParseStr()%>    
                                             </div>
                                         </div>
                                     </div>

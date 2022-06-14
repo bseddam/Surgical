@@ -22,10 +22,9 @@ public class Methods
         {
 
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select 
-InfoID,MainID,FieldNamesID,SortBy,InsertTime,UpdateTime,convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" +
-                lang + " as InfoShortName,InfoDetails_" +
-                lang + " as InfoDetailsName,isnull(ViewCount,0) ViewCount FROM Informations where mainid=@mainid order by SortBy", SqlConn);
+            SqlDataAdapter da = new SqlDataAdapter(@"select InfoID,MainID,FieldNamesID,SortBy,InsertTime,UpdateTime,
+convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoShortName,InfoDetails_" + lang + 
+" as InfoDetailsName,isnull(ViewCount,0) ViewCount FROM Informations where mainid=@mainid order by SortBy", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@mainid", mainid);
             da.Fill(dt);
             return dt;
@@ -62,8 +61,8 @@ InfoID,MainID,FieldNamesID,SortBy,InsertTime,UpdateTime,convert(nvarchar,UpdateT
         {
 
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select HeaderID,LnkURL,HeaderName_" 
-+ lang + " as Name FROM Headers order by SortBy", SqlConn);
+            SqlDataAdapter da = new SqlDataAdapter(@"select HeaderID,LnkURL,HeaderName_" + lang + 
+                " as Name FROM Headers order by SortBy", SqlConn);
             da.Fill(dt);
             return dt;
         }
@@ -205,7 +204,7 @@ InfoID,MainID,FieldNamesID,SortBy,InsertTime,UpdateTime,convert(nvarchar,UpdateT
         try
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"SELECT  MainID,MainName_" +
+            SqlDataAdapter da = new SqlDataAdapter(@"select  MainID,MainName_" +
               lang + " as Name FROM Main where organid=@organid and CategoryID=@CategoryID order by SortBy", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
             da.SelectCommand.Parameters.AddWithValue("@CategoryID", CategoryID);
@@ -223,7 +222,8 @@ InfoID,MainID,FieldNamesID,SortBy,InsertTime,UpdateTime,convert(nvarchar,UpdateT
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"SELECT  MainID,MainName_" +
-              lang + " as Name FROM Main where MainID=@MainID order by SortBy", SqlConn);
+              lang + " as Name,Information_" +
+              lang + " as Information FROM Main where MainID=@MainID order by SortBy", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;
@@ -239,7 +239,8 @@ InfoID,MainID,FieldNamesID,SortBy,InsertTime,UpdateTime,convert(nvarchar,UpdateT
         try
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select distinct TableHeaderID,TableHeader_" +lang + @" as Name,thsortby FROM allcolumn where CategoryID=@CategoryID and OrganID=@OrganID and 
+            SqlDataAdapter da = new SqlDataAdapter(@"select distinct TableHeaderID,TableHeader_" +lang + 
+                @" as Name,thsortby FROM allcolumn where CategoryID=@CategoryID and OrganID=@OrganID and 
 HeaderID=@HeaderID and MainID=@MainID order by thsortby", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
             da.SelectCommand.Parameters.AddWithValue("@CategoryID", CategoryID);
@@ -264,7 +265,7 @@ HeaderID=@HeaderID and MainID=@MainID order by thsortby", SqlConn);
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select Slide_Name_" + lang + " Slide_Name,Short_Name_" + lang+ " Short_Name,Detail_Name_" + lang +
-                " Detail_Name,Adi_" + lang + @" as Name,InfoShort_" +lang + @" ShortName,
+                " Detail_Name,InfoID,Adi_" + lang + @" as Name,InfoShort_" +lang + @" ShortName,
 InfoDetails_" +lang + @" DetailName,case when a.Short=0 then 'display:none;' else '' end Short,
 case when a.Detail=0 then 'display:none;' else '' end Detail,
 case when a.Slide=0 then 'display:none;' else '' end Slide,
@@ -296,16 +297,34 @@ HeaderID=@HeaderID and MainID=@MainID and TableHeaderID=@TableHeaderID order by 
         try
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select OrganName_"+lang + @" +' '+CategoryName_"+lang + @"  orqcat,CategoryName_"+lang + @" ,OrganName_"+lang + @" ,ConnHeaderInformationID,FieldID,FieldNamesID,HeaderID,HeaderName_"+lang + @" ,InfoDetails_"+lang + @" ,InfoID
-,InfoShort_"+lang + @",LnkURL,MainID,Short,Detail,Slide,ShortView,DetailView,iSortBy
-,hSortBy,TableHeaderID,thSortBy,fSortBy,TableHeader_"+lang + @" ,MainName_"+lang + @" ,OrganID,CategoryID
-,Information_"+lang + @" ,Patalogy_"+lang + @" ,Serishte_"+lang + @" ,Seviyye_"+lang + @" ,Seviyye_telebe_"+lang + @" ,Seviyye_rezident_"+lang + @" 
-,Kurs,Saat,XBT_Kodu,Acar_sozler_"+lang + @" ,DOI,URL
-  FROM allcolumn", SqlConn);
+            SqlDataAdapter da = new SqlDataAdapter(@"select distinct upper(replace(OrganName_" +lang + @" +' '+CategoryName_" +lang +
+                @",'i',N'İ'))  orqcat,HeaderID,HeaderName_" +lang + @" HeaderName,MainID,MainName_" +lang +
+                @" MainName,OrganID,CategoryID,headercolor,convert(nvarchar(300),Seviyye_" +lang + 
+                @") Seviyye from allcolumn order by MainID,HeaderID", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
             da.SelectCommand.Parameters.AddWithValue("@CategoryID", CategoryID);
             da.SelectCommand.Parameters.AddWithValue("@HeaderID", HeaderID);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+
+
+    public DataTable GetSlides(string lang, int InfoID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select SlideID,SlideName_" + lang + @" Name,SlideURL_" + lang + @" SlideURL,
+InfoID,TableName from Slides 
+where InfoID=@InfoID", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@InfoID", InfoID);
             da.Fill(dt);
             return dt;
         }

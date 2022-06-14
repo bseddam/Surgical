@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class _Default : System.Web.UI.Page
+public partial class liverdisease : System.Web.UI.Page
 {
     Methods db = new Methods();
     protected void Page_Load(object sender, EventArgs e)
@@ -20,9 +19,9 @@ public partial class _Default : System.Web.UI.Page
         int categoryid = Page.RouteData.Values["categoryid"].ToParseInt();
         int headerid = Page.RouteData.Values["headerid"].ToParseInt();
         string lang = Config.getLang(Page);
+        
+        ltrlmain.Text = db.GetMainByID(lang, mainid).Rows[0]["Name"].ToParseStr();
+        ltrlcontainer.Text = db.GetMainByID(lang, mainid).Rows[0]["Information"].ToParseStr();
 
-        DataTable dtHeader = db.Getalloperations(lang, 1, 3, 1, 1);
-        rptalloperations.DataSource = dtHeader;
-        rptalloperations.DataBind();
     }
 }
