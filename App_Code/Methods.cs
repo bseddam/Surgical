@@ -333,6 +333,24 @@ where InfoID=@InfoID", SqlConn);
             return null;
         }
     }
+    public string GetURL(string lang, string pagename, int organid, int categoryid, int mainid, int headerid)
+    {
+        string geturl = "";
+
+        try
+        {
+           
+                geturl = string.Format("/{0}/{1}/{2}/{3}/{4}/{5}", lang, pagename, organid, categoryid, mainid, headerid);
+         
+        }
+        catch (Exception ex)
+        {
+         
+        }
+        return geturl;
+
+    }
+
 
 
 }

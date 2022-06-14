@@ -41,10 +41,18 @@ public partial class DiseaseMasterPage : System.Web.UI.MasterPage
 
         foreach (DataRow item in dtleft.Rows)
         {
-            string linkurl = "/" + lang + "/liverdisease/" + organid.ToParseInt() + "/" 
-                + categoryid.ToParseInt() + "/" + item["MainID"].ToParseInt();
+            string linkurl = db.GetURL(lang, "liverdisease", organid.ToParseInt(), categoryid.ToParseInt(),
+                item["MainID"].ToParseInt(),0);
 
-            ltrlleftmenu.Text = ltrlleftmenu.Text + @" <li class=''>
+
+            string active = "";
+            if (linkurl == db.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
+                mainid.ToParseInt(), 0))
+            {
+                active = "active";
+            }
+
+            ltrlleftmenu.Text = ltrlleftmenu.Text + @" <li class='"+ active + @"'>
                                                     <a href='"+ linkurl + @"'>
                                                         " + item["Name"].ToParseStr() + @"
                                                     </a>

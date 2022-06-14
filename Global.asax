@@ -11,7 +11,7 @@
         routes.MapPageRoute("leadership", "{lang}/leadership/{organid}/{categoryid}/{mainid}/{headerid}", "~/leadership.aspx");
       
         routes.MapPageRoute("alloperations", "{lang}/alloperations/{organid}/{categoryid}/{mainid}/{headerid}", "~/all_operations.aspx");
-        routes.MapPageRoute("liverdisease", "{lang}/liverdisease/{organid}/{categoryid}/{mainid}", "~/liverdisease.aspx");
+        routes.MapPageRoute("liverdisease", "{lang}/liverdisease/{organid}/{categoryid}/{mainid}/{headerid}", "~/liverdisease.aspx");
 
         //routes.MapPageRoute("leadership", "{lang}/leadership/{mainid}/{headerid}", "~/leadership.aspx");
         //routes.MapPageRoute("leadershipOptional", "leadership/{mainid}/{headerid}", "~/leadership.aspx");

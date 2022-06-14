@@ -46,35 +46,28 @@ public partial class ChildMasterPage : System.Web.UI.MasterPage
         
         foreach (DataRow item in dtleft.Rows)
         {
-            string linkurl= "/" + lang + "/leadership/" + organid.ToParseInt() + "/" + categoryid.ToParseInt() + "/"
-        + mainid.ToParseInt() + "/" + item["HeaderID"].ToParseInt();
+            string linkurl= db.GetURL(lang ,"leadership" , organid.ToParseInt() , categoryid.ToParseInt() ,
+                mainid.ToParseInt() , item["HeaderID"].ToParseInt());
 
-            string aa="";
+            string icmenu="";
                tableheader = db.GetTableHeader(lang, mainid, item["HeaderID"].ToParseInt());
             foreach (DataRow item1 in tableheader.Rows)
             {
-                aa = aa + "<li><a href='"+ linkurl + "'> - " + item1["Name"].ToParseStr()+ @"</a></li >";
+                icmenu = icmenu + "<li><a href='"+ linkurl + "'> - " + item1["Name"].ToParseStr()+ @"</a></li >";
+            }  
+
+            string active="";
+            if (linkurl == db.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
+                mainid.ToParseInt(), headerid))
+            {
+                active = "active";
             }
-           
-//            ltrlleftmenu.Text = ltrlleftmenu.Text + @"
-//<li class=''>
-// <a href=' '>"+ item["Name"].ToParseStr() + @"</a>
-//  <ul class='dropdown_menu'>
-
-// " + aa + @"
-
-//  </ul>
-//</li>";
-
-
 
             ltrlleftmenu.Text = ltrlleftmenu.Text + @"
-<li class='active'>
+<li class='"+ active + @"'>
  <a href='"+ linkurl + @"'>" + item["Name"].ToParseStr() + @"</a>
   <ul class='dropdown_menu'>
-
- " + aa + @"
-
+" + icmenu + @"
   </ul>
 </li>";
         }
