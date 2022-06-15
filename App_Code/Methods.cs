@@ -300,7 +300,7 @@ HeaderID=@HeaderID and MainID=@MainID and TableHeaderID=@TableHeaderID order by 
             SqlDataAdapter da = new SqlDataAdapter(@"select distinct upper(replace(OrganName_" +lang + @" +' '+CategoryName_" +lang +
                 @",'i',N'İ'))  orqcat,HeaderID,HeaderName_" +lang + @" HeaderName,MainID,MainName_" +lang +
                 @" MainName,OrganID,CategoryID,headercolor,convert(nvarchar(300),Seviyye_" +lang + 
-                @") Seviyye from allcolumn order by MainID,HeaderID", SqlConn);
+                @") Seviyye,'' from allcolumn order by MainID,HeaderID", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
             da.SelectCommand.Parameters.AddWithValue("@CategoryID", CategoryID);
             da.SelectCommand.Parameters.AddWithValue("@HeaderID", HeaderID);
@@ -333,7 +333,7 @@ where InfoID=@InfoID", SqlConn);
             return null;
         }
     }
-    public string GetURL(string lang, string pagename, int organid, int categoryid, int mainid, int headerid)
+    public static string GetURL(string lang, string pagename, int organid, int categoryid, int mainid, int headerid)
     {
         string geturl = "";
 

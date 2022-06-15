@@ -89,9 +89,7 @@
                                     <ul class="hdr_menu clearfix">
                                         <asp:Repeater ID="rprightmenu" runat="server">
                                             <ItemTemplate>
-                                                <li class=""><a href="<%#Eval("LnkURL").ToParseStr()%>"><%#Eval("Name").ToParseStr() %></a></li>
-
-                                                <%-- <li class="menu_active"><a href="#">Dərslik </a></li>--%>
+                                                <li class=""><a href="<%#Eval("LnkURL").ToParseStr()%>"><%#Eval("Name").ToParseStr()%></a></li>
                                             </ItemTemplate>
                                         </asp:Repeater>
 
@@ -99,9 +97,11 @@
                                 </div>
                                 <div class="mob_ftr">
                                     <ul class="hdr_menu clearfix">
-                                        <li class="menu_active"><a href="#">Platforma haqqında</a></li>
-                                        <li class=""><a href="#">Statik göstəricilər</a></li>
-                                        <li class=""><a href="#">Əlaqə</a></li>
+                                       <asp:Repeater ID="rprightmenu1" runat="server">
+                                            <ItemTemplate>
+                                                <li class=""><a href="<%#Eval("LnkURL").ToParseStr()%>"><%#Eval("Name").ToParseStr()%></a></li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
                                     </ul>
                                 </div>
                             </nav>
@@ -127,18 +127,15 @@
                                 <div class="search_form_filters">
                                     <div class="row">
                                         <div class="odds_row">
+                                           
                                             <div class="col odds_col ">
                                                 <div class="lg_input ">
-                                                     
                                                  <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
-                                              
                                                 </div>
                                             </div>
                                             <div class="col odds_col ">
                                                 <div class="lg_input ">
-                                                   
                                                      <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
-                                               
                                                 </div>
                                             </div>
                                             <div class="col odds_col ">
@@ -146,6 +143,12 @@
                                                     <asp:DropDownList ID="ddlmain" runat="server" class="lg_inputs"></asp:DropDownList>
                                                 </div>
                                             </div>
+                                             <div class="col odds_col ">
+                                                <div class="lg_input ">
+                                                    <asp:DropDownList ID="ddlheaders" runat="server" class="lg_inputs"></asp:DropDownList>
+                                                </div>
+                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <div class="odds_row">

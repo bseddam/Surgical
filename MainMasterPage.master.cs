@@ -40,9 +40,9 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
 
 
         DataTable dtright = db.GetHeaders(lang);
-        rprightmenu.DataSource = dtright;
+        rprightmenu1.DataSource = rprightmenu.DataSource = dtright;
         rprightmenu.DataBind();
-
+        rprightmenu1.DataBind();
 
         ltrlsurcicalplatform.Text = db.GetMenuHeader(lang, 4).Rows[0]["Name"].ToParseStr();
         ltrlcopyright.Text= db.GetMenuHeader(lang, 6).Rows[0]["Name"].ToParseStr();
@@ -70,7 +70,17 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
         ddlorgans.DataBind();
         ddlorgans.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "-1"));
         ddlorgans.SelectedIndex = 0;
-       
+
+
+        DataTable dth = db.GetHeaders(lang);
+        ddlheaders.DataValueField = "HeaderID";
+        ddlheaders.DataTextField = "Name";
+        ddlheaders.DataSource = dth;
+        ddlheaders.DataBind();
+        ddlheaders.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "-1"));
+        ddlheaders.SelectedIndex = 0;
+
+        
     }
 
     void loadmain()
@@ -112,8 +122,7 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
     {
         string lang = Config.getLang(Page);
         if(ddlorgans.SelectedValue.ToParseInt()!=-1 && ddlcateqory.SelectedValue.ToParseInt() != -1 && ddlmain.SelectedValue.ToParseInt() != -1)
-        Config.Rd("/"+lang + "/leadership/"+ ddlorgans.SelectedValue.ToParseInt()+"/"+ ddlcateqory.SelectedValue.ToParseInt() + "/"
-            + ddlmain.SelectedValue.ToParseInt() + "/1");
-        
+        Config.Rd(Methods.GetURL(lang,"leadership", ddlorgans.SelectedValue.ToParseInt(), ddlcateqory.SelectedValue.ToParseInt(),
+            ddlmain.SelectedValue.ToParseInt(), 1));
     }
 }

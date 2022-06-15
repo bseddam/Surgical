@@ -11,7 +11,8 @@
                     <asp:Repeater ID="rptalloperations" runat="server">
                         <ItemTemplate>
                             <div class="col odds_col clearfix">
-                                <a href="#" class="main_items">
+                                <a href="<%#Methods.GetURL(Config.getLang(Page),"leadership",Eval("OrganID").ToParseInt(),
+    Eval("CategoryID").ToParseInt(),Eval("MainID").ToParseInt(), Eval("HeaderID").ToParseInt())%>" class="main_items">
                                     <div class="opr_content">
                                         <div class="odds_row">
                                             <div class="catg_title" style="background-color: <%#Eval("headercolor").ToParseStr()%>;">

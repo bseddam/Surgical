@@ -20,8 +20,8 @@ public partial class _Default : System.Web.UI.Page
         int categoryid = Page.RouteData.Values["categoryid"].ToParseInt();
         int headerid = Page.RouteData.Values["headerid"].ToParseInt();
         string lang = Config.getLang(Page);
-
-        DataTable dtHeader = db.Getalloperations(lang, 1, 3, 1, 1);
+        
+        DataTable dtHeader = db.Getalloperations(lang, categoryid, organid, mainid, headerid);
         rptalloperations.DataSource = dtHeader;
         rptalloperations.DataBind();
     }

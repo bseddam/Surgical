@@ -46,7 +46,7 @@ public partial class ChildMasterPage : System.Web.UI.MasterPage
         
         foreach (DataRow item in dtleft.Rows)
         {
-            string linkurl= db.GetURL(lang ,"leadership" , organid.ToParseInt() , categoryid.ToParseInt() ,
+            string linkurl= Methods.GetURL(lang ,"leadership" , organid.ToParseInt() , categoryid.ToParseInt() ,
                 mainid.ToParseInt() , item["HeaderID"].ToParseInt());
 
             string icmenu="";
@@ -57,7 +57,7 @@ public partial class ChildMasterPage : System.Web.UI.MasterPage
             }  
 
             string active="";
-            if (linkurl == db.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
+            if (linkurl == Methods.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
                 mainid.ToParseInt(), headerid))
             {
                 active = "active";
