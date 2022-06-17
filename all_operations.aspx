@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="odds_row">
                                             <div class="opr_info">
-                                            <%#Eval("Seviyye").ToParseStr()%>    
+                                            <%#Eval("InfoDetails").ToParseStr()%>    
                                             </div>
                                         </div>
                                     </div>

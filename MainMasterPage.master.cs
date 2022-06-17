@@ -60,7 +60,7 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
         ddlcateqory.DataTextField = "Name";
         ddlcateqory.DataSource = dt;
         ddlcateqory.DataBind();
-        ddlcateqory.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "-1"));
+        ddlcateqory.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "0"));
         ddlcateqory.SelectedIndex = 0;
         
         DataTable dt1 = db.GetOrgans(lang);
@@ -68,7 +68,7 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
         ddlorgans.DataTextField = "Name";
         ddlorgans.DataSource = dt1;
         ddlorgans.DataBind();
-        ddlorgans.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "-1"));
+        ddlorgans.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "0"));
         ddlorgans.SelectedIndex = 0;
 
 
@@ -77,7 +77,7 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
         ddlheaders.DataTextField = "Name";
         ddlheaders.DataSource = dth;
         ddlheaders.DataBind();
-        ddlheaders.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "-1"));
+        ddlheaders.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "0"));
         ddlheaders.SelectedIndex = 0;
 
         
@@ -91,7 +91,7 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
         ddlmain.DataTextField = "Name";
         ddlmain.DataSource = dt2;
         ddlmain.DataBind();
-        ddlmain.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "-1"));
+        ddlmain.Items.Insert(0, new ListItem(db.GetMenuHeader(lang, 7).Rows[0]["Name"].ToParseStr(), "0"));
         ddlmain.SelectedIndex = 0;
     }
     public string getURL(string lang)
@@ -121,8 +121,8 @@ public partial class MainMasterPage : System.Web.UI.MasterPage
     protected void btnctqsearch_Click(object sender, EventArgs e)
     {
         string lang = Config.getLang(Page);
-        if(ddlorgans.SelectedValue.ToParseInt()!=-1 && ddlcateqory.SelectedValue.ToParseInt() != -1 && ddlmain.SelectedValue.ToParseInt() != -1)
-        Config.Rd(Methods.GetURL(lang,"leadership", ddlorgans.SelectedValue.ToParseInt(), ddlcateqory.SelectedValue.ToParseInt(),
-            ddlmain.SelectedValue.ToParseInt(), 1));
+ 
+        Config.Rd(Methods.GetURL(lang, "alloperations", ddlorgans.SelectedValue.ToParseInt(), ddlcateqory.SelectedValue.ToParseInt(),
+            ddlmain.SelectedValue.ToParseInt(), ddlheaders.SelectedValue.ToParseInt()));
     }
 }

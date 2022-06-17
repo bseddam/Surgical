@@ -23,6 +23,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div>
 
             <div class="page">
@@ -97,7 +98,7 @@
                                 </div>
                                 <div class="mob_ftr">
                                     <ul class="hdr_menu clearfix">
-                                       <asp:Repeater ID="rprightmenu1" runat="server">
+                                        <asp:Repeater ID="rprightmenu1" runat="server">
                                             <ItemTemplate>
                                                 <li class=""><a href="<%#Eval("LnkURL").ToParseStr()%>"><%#Eval("Name").ToParseStr()%></a></li>
                                             </ItemTemplate>
@@ -127,28 +128,30 @@
                                 <div class="search_form_filters">
                                     <div class="row">
                                         <div class="odds_row">
-                                           
-                                            <div class="col odds_col ">
-                                                <div class="lg_input ">
-                                                 <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
-                                                </div>
-                                            </div>
-                                            <div class="col odds_col ">
-                                                <div class="lg_input ">
-                                                     <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
-                                                </div>
-                                            </div>
-                                            <div class="col odds_col ">
-                                                <div class="lg_input ">
-                                                    <asp:DropDownList ID="ddlmain" runat="server" class="lg_inputs"></asp:DropDownList>
-                                                </div>
-                                            </div>
-                                             <div class="col odds_col ">
-                                                <div class="lg_input ">
-                                                    <asp:DropDownList ID="ddlheaders" runat="server" class="lg_inputs"></asp:DropDownList>
-                                                </div>
-                                            </div>
-                                           
+                                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <ContentTemplate>
+                                                    <div class="col odds_col ">
+                                                        <div class="lg_input ">
+                                                            <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col odds_col ">
+                                                        <div class="lg_input ">
+                                                            <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col odds_col ">
+                                                        <div class="lg_input ">
+                                                            <asp:DropDownList ID="ddlmain" runat="server" class="lg_inputs"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col odds_col ">
+                                                        <div class="lg_input ">
+                                                            <asp:DropDownList ID="ddlheaders" runat="server" class="lg_inputs"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
                                     <div class="odds_row">

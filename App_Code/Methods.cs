@@ -294,24 +294,49 @@ HeaderID=@HeaderID and MainID=@MainID and TableHeaderID=@TableHeaderID order by 
 
     public DataTable Getalloperations(string lang, int CategoryID, int OrganID, int MainID, int HeaderID)
     {
-        try
-        {
+        //try
+        //{
+            string filter = "";
+            if(CategoryID != 0)
+            {
+                filter = filter + " and a.CategoryID=@CategoryID";
+            }
+
+            if (OrganID != 0)
+            {
+                filter = filter + " and a.OrganID=@OrganID";
+            }
+            if (MainID != 0)
+            {
+                filter = filter + " and a.MainID=@MainID";
+            }
+            if (HeaderID != 0)
+            {
+                filter = filter + " and a.HeaderID=@HeaderID";
+            }
+
+
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select distinct upper(replace(OrganName_" +lang + @" +' '+CategoryName_" +lang +
-                @",'i',N'İ'))  orqcat,HeaderID,HeaderName_" +lang + @" HeaderName,MainID,MainName_" +lang +
-                @" MainName,OrganID,CategoryID,headercolor,convert(nvarchar(300),Seviyye_" +lang + 
-                @") Seviyye,'' from allcolumn order by MainID,HeaderID", SqlConn);
+            SqlDataAdapter da = new SqlDataAdapter(@"select upper(replace(OrganName_"+lang + @"  +' '+CategoryName_"+lang
+                + @" ,'i',N'İ')) orqcat,a.infoid, a.HeaderID,HeaderName_"+lang + @"  HeaderName,a.MainID,MainName_"+lang + @"  MainName,
+a.OrganID,a.CategoryID,a.headercolor,convert(nvarchar(300),InfoDetails_"+lang + @" ) InfoDetails from allcolumn a inner join (
+select min(infoid) infoid, a.HeaderID,HeaderName_"+lang + @"  HeaderName,a.MainID,MainName_"+lang + @"  MainName,
+OrganID,CategoryID,headercolor from allcolumn a 
+group by a.HeaderID,HeaderName_"+lang + @" ,a.MainID,MainName_"+lang + @" ,
+OrganID,CategoryID,headercolor) kk on kk.infoid=a.InfoID and kk.MainID=a.MainID and kk.HeaderID=a.HeaderID
+where 1=1 "+filter+@"
+order by a.MainID,a.HeaderID", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
             da.SelectCommand.Parameters.AddWithValue("@CategoryID", CategoryID);
             da.SelectCommand.Parameters.AddWithValue("@HeaderID", HeaderID);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;
-        }
-        catch (Exception ex)
-        {
-            return null;
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
     }
 
 
