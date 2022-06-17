@@ -13,6 +13,7 @@
         routes.MapPageRoute("alloperations", "{lang}/alloperations/{organid}/{categoryid}/{mainid}/{headerid}", "~/all_operations.aspx");
         routes.MapPageRoute("liverdisease", "{lang}/liverdisease/{organid}/{categoryid}/{mainid}/{headerid}", "~/liverdisease.aspx");
 
+        routes.MapPageRoute("category", "{lang}/category/{organid}/{categoryid}/{mainid}/{headerid}", "~/Category.aspx");
         //routes.MapPageRoute("leadership", "{lang}/leadership/{mainid}/{headerid}", "~/leadership.aspx");
         //routes.MapPageRoute("leadershipOptional", "leadership/{mainid}/{headerid}", "~/leadership.aspx");
 

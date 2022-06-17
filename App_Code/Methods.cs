@@ -294,8 +294,8 @@ HeaderID=@HeaderID and MainID=@MainID and TableHeaderID=@TableHeaderID order by 
 
     public DataTable Getalloperations(string lang, int CategoryID, int OrganID, int MainID, int HeaderID)
     {
-        //try
-        //{
+        try
+        {
             string filter = "";
             if(CategoryID != 0)
             {
@@ -332,11 +332,11 @@ order by a.MainID,a.HeaderID", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;
-        //}
-        //catch (Exception ex)
-        //{
-        //    return null;
-        //}
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 
 
