@@ -23,11 +23,24 @@ public partial class ChildMasterPage : System.Web.UI.MasterPage
         
         string lang = Config.getLang(Page);
         ltrlmainpage.Text = db.GetMenuHeader(lang, 8).Rows[0]["Name"].ToParseStr();
+        DataTable dtorgan = db.GetOrganByID(lang, organid);
+        DataTable dtcateqory = db.GetCateqoryByID(lang, categoryid);
+        if (dtorgan.Rows.Count > 0 && dtcateqory.Rows.Count>0)
+        {
+            ltrlorgancategory.Text = dtorgan.Rows[0]["Name"].ToParseStr() + ' ' +
+            dtcateqory.Rows[0]["Name"].ToParseStr();
+        }
 
-        ltrlorgancategory.Text = db.GetOrganByID(lang, organid).Rows[0]["Name"].ToParseStr() + ' ' +
-            db.GetCateqoryByID(lang, categoryid).Rows[0]["Name"].ToParseStr();
-        ltrlmain1.Text=ltrlmain.Text = db.GetMainByID(lang, mainid).Rows[0]["Name"].ToParseStr();
-        ltrlheader.Text = db.GetHeaderByID(lang, headerid).Rows[0]["Name"].ToParseStr();
+        DataTable dtmain = db.GetMainByID(lang, mainid);
+        if (dtmain.Rows.Count > 0)
+        {
+            ltrlmain1.Text = ltrlmain.Text = dtmain.Rows[0]["Name"].ToParseStr();
+        }
+        DataTable dtheader = db.GetHeaderByID(lang, headerid);
+        if (dtheader.Rows.Count > 0)
+        {
+            ltrlheader.Text = dtheader.Rows[0]["Name"].ToParseStr();
+        }
         lrtlviewcount.Text = "0";
         DataTable dtInformationByMainID = db.GetInformationByMainID(lang, mainid);
         if (dtInformationByMainID.Rows.Count != 0)

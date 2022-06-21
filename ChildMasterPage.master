@@ -9,19 +9,16 @@
                         <div class="breadcrumbs_section">
                             <ul class="breadcrumbs">
                                 <li>
-                                    <a href="">
-                                        <asp:Literal ID="ltrlmainpage" runat="server"></asp:Literal> </a>
+                                    <a href=""><asp:Literal ID="ltrlmainpage" runat="server"></asp:Literal></a>
                                 </li>
                                 <li>
-                                    <a href=""><asp:Literal ID="ltrlorgancategory" runat="server"></asp:Literal> </a>
+                                    <a href=""><asp:Literal ID="ltrlorgancategory" runat="server"></asp:Literal></a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <asp:Literal ID="ltrlmain" runat="server"></asp:Literal> </a>
+                                    <a href=""><asp:Literal ID="ltrlmain" runat="server"></asp:Literal></a>
                                 </li>
                                 <li>
-                                    <a href="">
-                                        <asp:Literal ID="ltrlheader" runat="server"></asp:Literal> </a>
+                                    <a href=""><asp:Literal ID="ltrlheader" runat="server"></asp:Literal></a>
                                 </li>
                             </ul>
                             <div class="breadcrumb_items clearfix">

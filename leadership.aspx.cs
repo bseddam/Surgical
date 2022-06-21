@@ -22,7 +22,7 @@ public partial class leadership : System.Web.UI.Page
         string lang = Config.getLang(Page);
         //string qisa = db.GetMenuHeader(lang, 12).Rows[0]["Name"].ToParseStr();
         //string aciqlama = db.GetMenuHeader(lang, 13).Rows[0]["Name"].ToParseStr();
-        string slide = db.GetMenuHeader(lang, 14).Rows[0]["Name"].ToParseStr();
+        //string slide = db.GetMenuHeader(lang, 14).Rows[0]["Name"].ToParseStr();
 
 
         DataTable dtheader = db.GetLeadershipHeader(lang, categoryid, organid, mainid, headerid);
@@ -34,7 +34,7 @@ public partial class leadership : System.Web.UI.Page
             foreach (DataRow drshortdetails in dtshortdetail.Rows)
             {
                 string slidetext = "";
-                DataTable dtslides = db.GetSlides(lang, drshortdetails["InfoID"].ToParseInt());
+                DataTable dtslides = db.GetSlides(lang, drshortdetails["InfoID"].ToParseInt(), "INFO");
                 foreach (DataRow drslide in dtslides.Rows)
                 {
                     slidetext = slidetext + @"<li data-responsive='/" + drslide["SlideURL"].ToParseStr() + @"' data-src='/" + drslide["SlideURL"].ToParseStr() + @"' data-sub-html=''>

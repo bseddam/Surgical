@@ -136,7 +136,10 @@ convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoSho
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"SELECT  CategoryID,CategoryName_" +
-                lang + " as Name FROM Category order by SortBy", SqlConn);
+                lang + " as Name,SUBSTRING(CategoryName_" +
+                lang + ",1,len(CategoryName_" +
+                lang + ")-1) as Name1,Link " +
+                "FROM Category order by SortBy", SqlConn);
            
             da.Fill(dt);
             return dt;
@@ -257,6 +260,29 @@ HeaderID=@HeaderID and MainID=@MainID order by thsortby", SqlConn);
 
 
 
+    public DataTable GetKateqory(string lang, int CategoryID, int OrganID, int MainID, int HeaderID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select TableHeader_" + lang +
+                @" as Name,thsortby FROM Kateqoriya where CategoryID=@CategoryID and OrganID=@OrganID and 
+HeaderID=@HeaderID and MainID=@MainID order by thsortby", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
+            da.SelectCommand.Parameters.AddWithValue("@CategoryID", CategoryID);
+            da.SelectCommand.Parameters.AddWithValue("@HeaderID", HeaderID);
+            da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+
+
 
 
     public DataTable GetShortDetails(string lang,int CategoryID,int OrganID,int MainID,int HeaderID,int TableHeaderID)
@@ -341,15 +367,15 @@ order by a.MainID,a.HeaderID", SqlConn);
 
 
 
-    public DataTable GetSlides(string lang, int InfoID)
+    public DataTable GetSlides(string lang, int InfoID, string TableName)
     {
         try
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select SlideID,SlideName_" + lang + @" Name,SlideURL_" + lang + @" SlideURL,
-InfoID,TableName from Slides 
-where InfoID=@InfoID", SqlConn);
+InfoID,TableName from Slides where InfoID=@InfoID and TableName=@TableName", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@InfoID", InfoID);
+            da.SelectCommand.Parameters.AddWithValue("@TableName", TableName);
             da.Fill(dt);
             return dt;
         }
@@ -374,6 +400,39 @@ where InfoID=@InfoID", SqlConn);
         }
         return geturl;
 
+    }
+
+    public DataTable GetAbout(string lang)
+    {
+        try
+        {
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select AboutID,About" + lang +@" Name from About", SqlConn);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+
+    public DataTable GetContact(string lang)
+    {
+        try
+        {
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select  ContactID,Contact" + lang + @" Name from Contact", SqlConn);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 
 
