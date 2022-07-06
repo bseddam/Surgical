@@ -1,0 +1,371 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="SiteUser.Master.cs" Inherits="SiteUser" %>
+<!DOCTYPE html>
+
+<!-- saved from url=(0059)https://adminlte.io/themes/AdminLTE/pages/tables/data.html# -->
+<html style="height: auto; min-height: 100%;">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BCK ADMİN</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../UsersStyle/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href=".../UsersStyle/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../UsersStyle/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../UsersStyle/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../UsersStyle/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="../UsersStyle/css.css">
+<%--    <script type="text/javascript">
+        function rtcScript() {
+            document.oncontextmenu = null;
+            document.onselectstart = null;
+            document.onmousedown = null;
+            document.onclick = null;
+            document.oncopy = null;
+            document.oncut = null;
+            var elements = document.getElementsByTagName('*');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].oncontextmenu = null;
+                elements[i].onselectstart = null;
+                elements[i].onmousedown = null;
+                elements[i].oncopy = null;
+                elements[i].oncut = null;
+            }
+            function preventShareThis() {
+                document.getSelection = window.getSelection = function () {
+                    return { isCollapsed: true };
+                }
+            }
+            var scripts = document.getElementsByTagName('script');
+            for (var i = 0; i < scripts.length; i++) {
+                if (scripts[i].src.indexOf('w.sharethis.com') > -1) {
+                    preventShareThis();
+                }
+            }
+            if (typeof Tynt != 'undefined') {
+                Tynt = null;
+            }
+        }
+        rtcScript();
+        setInterval(rtcScript, 2000);
+        function Fmenuleft() {
+            if (document.getElementById("menuleft").style.display != "none")
+                document.getElementById("menuleft").style.display = "none";
+            else
+                document.getElementById("menuleft").style.display = "block";
+        }
+    </script>--%>
+    <style>
+        * {
+            -webkit-user-select: auto !important; /* injected by RightToCopy */
+        }
+        /*.messages-menu:hover{
+            color:black;
+            font-weight:bold;
+        }*/
+        aside ul li{
+            color:black;
+            font-weight:bold;
+        }
+        .stmen{
+            color:white;
+            font-weight:bold;
+            background-color:#054773;
+        }
+        .stmen:hover{
+            color:black;
+            font-weight:bold;
+            background-color:#f4f4f5;
+        }
+         .stmen:hover span{
+            color:black;
+            font-weight:bold;
+            background-color:#f4f4f5;
+        }
+    </style>
+    <style type="text/css" data-asas-style="">
+        body, div, a, p, span {
+            user-select: text !important;
+        }
+
+        p, h1, h2, h3, h4, h5, h6 {
+            cursor: auto;
+            user-select: text !important;
+        }
+
+        ::selection {
+            background-color: #338FFF !important;
+            color: #fff !important;
+        }
+        .stlogo{
+            font-size:12px;
+            font-family:'Times New Roman';
+        }
+    </style>
+</head>
+   
+<body class="sidebar-mini skin-blue-light" style="height: auto; min-height: 100%; font-family:'Times New Roman';">
+    <form runat="server">
+        <div class="main-header" style="height:auto; background-color:#054773;padding:10px;margin-bottom:1px;text-align:center;color:white;font-family:'Times New Roman';font-size:32px;">
+            <span class="logo-lg"><b><asp:Label ID="lbltamElmiMuesse" runat="server"  Font-Names="Times New Roman"></asp:Label></b></span>
+        </div>
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+        <asp:Label ID="lbltesdiq" runat="server" Visible="false"></asp:Label>
+        
+        <header class="main-header" style="background-color:#054773;">
+            <!-- Logo -->
+            <a href="UserMain.aspx" class="logo" style="background-color:#054773;">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>BCK<asp:Label ID="lblqisaElmiMuesse" Visible="false" Font-Names="Times New Roman" runat="server"></asp:Label></b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Cərrahiyə
+                    </b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" style="background-color:#054773;">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="background-color:#054773;">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <div class="navbar-custom-menu" style="background-color:#054773;">
+                    <ul class="nav navbar-nav">
+                        <%--<li class="dropdown messages-menu">
+                            <asp:LinkButton ID="LinkButton1" CssClass="dropdown-toggle" runat="server" OnClick="LinkButton1_Click">Məlumatı təsdiqləyin
+                                <i class="fa fa-check-square"></i>    <%--Height="50" BorderStyle="Solid" BorderColor="White" BorderWidth="1" --%>                           
+                        <%--</asp:LinkButton>             
+                        </li>
+                        <li class="dropdown messages-menu">
+                            <asp:LinkButton ID="LinkButton2" CssClass="dropdown-toggle" runat="server" OnClick="LinkButton2_Click">Baxış
+                                <i class="fa fa-eye"></i>                                
+                            </asp:LinkButton>             
+                        </li>--%>
+                        <%--                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">1</span>
+                            </a>               
+                        </li>--%>
+                        <%--  <li class="dropdown notifications-menu">
+                            <a href="Notifications.aspx" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                                <span class="label label-warning">
+                                    <asp:Label ID="lblbildirissay" runat="server" Text="Label"></asp:Label></span>
+                            </a>
+                    
+                        </li>--%>
+                         <li class="dropdown messages-menu">
+                            <asp:LinkButton ID="LinkButton3" CssClass="dropdown-toggle" runat="server" OnClick="LinkButton3_Click">Çıxış
+                                <i class="fa fa-close"></i>                                
+                            </asp:LinkButton>             
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar" id="menuleft">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar" style="height: auto;">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <%--<asp:Label ID="lblimgLogo" Visible="false" runat="server" Text="Label"></asp:Label>
+                    <div class="pull-left image">
+                        <img src="<%=lblimgLogo.Text %>"" class="img-circle" style="height:50px; width:50px;" alt="">
+                    </div>--%>
+                   <%-- <div class="pull-left info">
+                        <p><asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label></p>
+                        <a href="UserMain.aspx"><i class="fa fa-circle text-success"></i></a>
+                    </div>--%>
+                </div>
+                <!-- search form -->
+                
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                 <fieldset id="myFieldset" <%=lbltesdiq.Text %>>
+                <ul class="sidebar-menu tree" data-widget="tree" >
+                    <li class="header">MƏLUMAT KATEQORİYALARI</li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        
+                        <a href="Category.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Təsnifat</span> 
+                         </a>   
+                           
+                    </li> 
+                    <li class="bg-success stmen" style="background-color:#054773;">  <%--style="background-color:#3c8dbc;"--%>
+                        <a href="Headers.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Başlıqlar</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Organs.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Orqanlar</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="MainCategory.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Mövzular</span>
+                        </a>              
+                    </li>
+                   <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Authors.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Müəlliflər</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Informations.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Məlumatlar</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Lectures.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Mühazirələr</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Questions.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Sual cavab</span>
+                        </a>              
+                    </li>
+                   <%-- <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Kateqoriya.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Kateqoriya cədvəl</span>
+                        </a>              
+                    </li>--%>
+                    <%--<li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Tomoqrafiya.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Tomoqrafiya</span>
+                        </a>              
+                    </li>--%>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Endoskopiya.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Endoskopiya</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="MyExperience.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Mənim təcrübəm</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="About.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Haqqında</span>
+                        </a>              
+                    </li>
+                    <li class="bg-success stmen" style="background-color:#054773;">
+                        <a href="Contact.aspx" style="color:white;">
+                            <i class="fa fa-angle-right"></i><span class="stmen">Əlaqə</span>
+                        </a>              
+                    </li>
+                </ul>
+                     </fieldset>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" style="min-height: 960px;">
+            <!-- Content Header (Page header) -->
+            <section class="content-header" style="background-color:rgba(0,0,0,0.1);">
+                <div class="col-lg-12" id="divheadinfo" runat="server" style="font-family: 'Times New Roman';color:white; font-size:24px; padding-bottom:5px; margin:0px -15px 20px -15px; padding-top:5px; font-weight:bold; background-color:#054773;">
+        <asp:Label ID="lblheadInfo" runat="server"></asp:Label>
+            </div>  
+                    
+                    <small></small>
+               
+            </section>
+
+            <!-- Main content -->
+            <section class="content" >
+                <div class="row" >
+                    <div class="col-lg-12"  id="divcontent" style="overflow-y:auto;padding-left:0px;">
+
+                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                         </asp:ContentPlaceHolder>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+               
+   
+            </div>
+            <strong>Copyright © 2022 <a href="http://cerrahiye.az/">cerrahiye.az</a>.</strong>
+  <%--          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <strong style="float:right;"> Əlaqə: (+994 12)4925593, (+994 55)7862519, Email: dilazer@yandex.ru </strong>--%>
+ 
+        </footer>
+
+        <!-- Control Sidebar -->
+
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+    </div>
+    <!-- ../wrapper -->
+
+    <!-- jQuery 3 -->
+    <script async="" src="../UsersStyle/analytics.js"></script>
+    <script src="../UsersStyle/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+<%--    <script src="../UsersStyle/bootstrap.min"></script>--%>
+    <!-- DataTables -->
+    <script src="../UsersStyle/jquery.dataTables.min.js"></script>
+    <script src="../UsersStyle/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="../UsersStyle/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../UsersStyle/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../UsersStyle/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+<%--    <script src="../UsersStyle/demo.js"></script>--%>
+    <!-- page script -->
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+</script>
+
+         </form>
+</body>
+   
+</html>

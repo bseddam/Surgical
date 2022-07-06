@@ -15,7 +15,55 @@ public class Methods
     {
         get { return new SqlConnection(@"Data Source=sql5102.site4now.net;Initial Catalog=db_a85441_elvinismayilov;User Id=db_a85441_elvinismayilov_admin;Password=Surgical2022;"); }
     }
-    
+
+    public DataTable getDT(string sql)
+    {
+        try
+        {
+            SqlConn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter(sql, SqlConn);
+            DataTable dt = new DataTable();
+            dap.Fill(dt);
+            SqlConn.Close();
+
+            return dt;
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception(ex.Message + "(" + sql + ")");
+        }
+    }
+
+    public DataTable getDTCMD(SqlCommand sql)
+    {
+        try
+        {
+            SqlConn.Open();
+            SqlDataAdapter dap = new SqlDataAdapter(sql);
+            DataTable dt = new DataTable();
+            dap.Fill(dt);
+            SqlConn.Close();
+
+            return dt;
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception(ex.Message + "(" + sql + ")");
+        }
+    }
+    public string getfooternote()
+    {
+        string a = "Qeyd: <b style='font - size:18px; '>*</b> ilə qeyd olunan xanalar mütləq doldurulmalıdır.";
+        return a;
+    }
+
+    public static void MsgBox(string mstx, Page P)
+    {
+        P.ClientScript.RegisterClientScriptBlock(P.GetType(), "PopupScript", "window.focus(); alert('" + mstx + "');", true);
+    }
+
+
+
     public DataTable GetInformationByMainID(string lang,int mainid)
     {
         try

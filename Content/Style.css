@@ -1,0 +1,17 @@
+﻿body {
+   
+}
+#Headersite{
+    background-color:#0094ff;
+    float:left;
+}
+.HeadControls{
+    float:right;
+}
+.logoSite {
+    float: left;
+}
+.divpadding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
