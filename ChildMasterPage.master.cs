@@ -54,36 +54,20 @@ public partial class ChildMasterPage : System.Web.UI.MasterPage
 
         ltrlshare.Text = db.GetMenuHeader(lang, 10).Rows[0]["Name"].ToParseStr();
         ltrlprint.Text = db.GetMenuHeader(lang, 11).Rows[0]["Name"].ToParseStr();
-        DataTable tableheader;
-        DataTable dtleft = db.GetHeadersLeftMenu(lang, mainid);
-        
-        foreach (DataRow item in dtleft.Rows)
-        {
-            string linkurl= Methods.GetURL(lang ,"leadership" , organid.ToParseInt() , categoryid.ToParseInt() ,
-                mainid.ToParseInt() , item["HeaderID"].ToParseInt());
-
-            string icmenu="";
-               tableheader = db.GetTableHeader(lang, mainid, item["HeaderID"].ToParseInt());
-            foreach (DataRow item1 in tableheader.Rows)
-            {
-                icmenu = icmenu + "<li><a href='"+ linkurl + "'> - " + item1["Name"].ToParseStr()+ @"</a></li >";
-            }  
-
-            string active="";
-            if (linkurl == Methods.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
-                mainid.ToParseInt(), headerid))
-            {
-                active = "active";
-            }
-
-            ltrlleftmenu.Text = ltrlleftmenu.Text + @"
-<li class='"+ active + @"'>
- <a href='"+ linkurl + @"'>" + item["Name"].ToParseStr() + @"</a>
-  <ul class='dropdown_menu'>
-" + icmenu + @"
-  </ul>
-</li>";
-        }
        
+        DataTable dtleft = db.GetHeaders(lang,1);
+        
+        rptHeaderMenu.DataSource = dtleft;
+        rptHeaderMenu.DataBind();
+        //string linkurl = Methods.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
+        //        mainid.ToParseInt(), 1);
+
+        //string active = "";
+        //if (linkurl == Methods.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
+        //    mainid.ToParseInt(), headerid))
+        //{
+        //    active = "active";
+        //}
+
     }
 }

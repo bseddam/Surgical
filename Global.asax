@@ -9,7 +9,6 @@
         routes.MapPageRoute("home", "{lang}/home", "~/Default.aspx");
 
         routes.MapPageRoute("leadership", "{lang}/leadership/{organid}/{categoryid}/{mainid}/{headerid}", "~/leadership.aspx");
-      
         routes.MapPageRoute("alloperations", "{lang}/alloperations/{organid}/{categoryid}/{mainid}/{headerid}", "~/all_operations.aspx");
         routes.MapPageRoute("liverdisease", "{lang}/liverdisease/{organid}/{categoryid}/{mainid}/{headerid}", "~/liverdisease.aspx");
 

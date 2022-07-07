@@ -119,6 +119,23 @@ convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoSho
             return null;
         }
     }
+    public DataTable GetHeaders(string lang, int typeid)
+    {
+        try
+        {
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select HeaderID,LnkURL,HeaderName_" + lang +
+                " as Name FROM Headers where typeid=@typeid order by SortBy", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@typeid", typeid);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
 
     public DataTable GetHeaderByID(string lang,int HeaderID)
     {
@@ -139,22 +156,21 @@ convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoSho
     }
 
 
-    public DataTable GetHeadersLeftMenu(string lang, int mainid)
+    public DataTable GetHeadersLeftMenu(string lang, int typeid)
     {
-        try
-        {
+        //try
+        //{
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select * from 
-(select distinct HeaderID,LnkURL,HeaderName_"
-+ lang + @" as Name,hSortBy FROM allcolumn where mainid=@mainid) as k order by hSortBy", SqlConn);
-            da.SelectCommand.Parameters.AddWithValue("@mainid", mainid);
+            SqlDataAdapter da = new SqlDataAdapter(@"select  MenuHeaderID,MenuHeaderName_" +
+                lang + " as Name,MenuURL from MenuHeader where typeid=@typeid  order by SortBy", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@typeid", typeid);
             da.Fill(dt);
             return dt;
-        }
-        catch (Exception ex)
-        {
-            return null;
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
     }
 
     public DataTable GetTableHeader(string lang, int mainid,int headerid)
@@ -338,15 +354,15 @@ HeaderID=@HeaderID and MainID=@MainID order by thsortby", SqlConn);
         try
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"select Slide_Name_" + lang + " Slide_Name,Short_Name_" + lang+ " Short_Name,Detail_Name_" + lang +
-                " Detail_Name,InfoID,Adi_" + lang + @" as Name,InfoShort_" +lang + @" ShortName,
+            SqlDataAdapter da = new SqlDataAdapter(@"select Slide_Name_" + lang + " Slide_Name,Short_Name_" + lang+ 
+" Short_Name,Detail_Name_" + lang +" Detail_Name,InfoID,Adi_" + lang + @" as Name,InfoShort_" +lang + @" ShortName,
 InfoDetails_" +lang + @" DetailName,case when a.Short=0 then 'display:none;' else '' end Short,
 case when a.Detail=0 then 'display:none;' else '' end Detail,
 case when a.Slide=0 then 'display:none;' else '' end Slide,
-case when a.ShortView=0 then '' else 'collapse_btn' end ShortViewbtn,
-case when a.ShortView=0 then '' else 'collapse_content' end ShortViewpnl,
-case when a.DetailView=0 then '' else 'collapse_btn' end DetailViewbtn,
-case when a.DetailView=0 then '' else 'collapse_content' end DetailViewpnl,TableHeaderID 
+case when a.ShortView=0 then 'collapse_btn' else '' end ShortViewbtn,
+case when a.ShortView=0 then 'collapse_content' else '' end ShortViewpnl,
+case when a.DetailView=0 then 'collapse_btn' else '' end DetailViewbtn,
+case when a.DetailView=0 then 'collapse_content' else '' end DetailViewpnl,TableHeaderID 
 FROM allcolumn a where CategoryID=@CategoryID and OrganID=@OrganID and 
 HeaderID=@HeaderID and MainID=@MainID and TableHeaderID=@TableHeaderID order by thsortby,fSortBy", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@OrganID", OrganID);
