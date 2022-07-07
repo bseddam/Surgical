@@ -82,6 +82,5 @@
 
     </div>
 
-    <asp:HiddenField ID="hf" runat="server" />
 </asp:Content>
 
