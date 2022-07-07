@@ -128,22 +128,22 @@
                                         <div class="odds_row">
                                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                 <ContentTemplate>
-                                                    <div class="col odds_col ">
+                                                    <div class="col odds_col " style="width:25%;">
                                                         <div class="lg_input ">
                                                             <asp:DropDownList ID="ddlorgans" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlorgans_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
-                                                    <div class="col odds_col ">
+                                                    <div class="col odds_col " style="width:25%;">
                                                         <div class="lg_input ">
                                                             <asp:DropDownList ID="ddlcateqory" runat="server" class="lg_inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlcateqory_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
-                                                    <div class="col odds_col ">
+                                                    <div class="col odds_col " style="width:25%;">
                                                         <div class="lg_input ">
                                                             <asp:DropDownList ID="ddlmain" runat="server" class="lg_inputs"></asp:DropDownList>
                                                         </div>
                                                     </div>
-                                                    <div class="col odds_col ">
+                                                    <div class="col odds_col " style="width:25%;">
                                                         <div class="lg_input ">
                                                             <asp:DropDownList ID="ddlheaders" runat="server" class="lg_inputs"></asp:DropDownList>
                                                         </div>
