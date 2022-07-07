@@ -59,7 +59,6 @@
                             <ul class="left_inner_menu ">
                                 <asp:Repeater ID="rptHeaderMenu" runat="server">
                                     <ItemTemplate>
-
                                         <li class="<%#Eval("LnkURL").ToParseStr()%>">
                                             <a href="/<%=Config.getLang(Page)%>/<%#Eval("LnkURL").ToParseStr()%>/<%#Page.RouteData.Values["organid"].ToParseInt()%>/<%#Page.RouteData.Values["categoryid"].ToParseInt()%>/<%#Page.RouteData.Values["mainid"].ToParseInt()%>/<%#Eval("HeaderID").ToParseInt()%>">
                                                 <%#Eval("Name").ToParseStr()%></a>
