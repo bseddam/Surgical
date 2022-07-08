@@ -136,6 +136,24 @@ convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoSho
             return null;
         }
     }
+    public DataTable GetHeaders(string lang, int typeid,int headerid)
+    {
+        //try
+        //{
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select HeaderID,LnkURL,HeaderName_" + lang +
+                " as Name FROM Headers where typeid=@typeid and headerid=@headerid  order by SortBy", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@typeid", typeid);
+            da.SelectCommand.Parameters.AddWithValue("@headerid", headerid);
+            da.Fill(dt);
+            return dt;
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
+    }
 
     public DataTable GetHeaderByID(string lang,int HeaderID)
     {
@@ -448,6 +466,32 @@ InfoID,TableName from Slides where InfoID=@InfoID and TableName=@TableName", Sql
             return null;
         }
     }
+
+
+    public DataTable GetAuthors(string lang, int QuestionID, string TableName)
+    {
+        //try
+        //{
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+inner join Questions q on q.QuestionID=ca.tableid where q.QuestionID=@QuestionID and TableName=@TableName ", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@QuestionID", QuestionID);
+            da.SelectCommand.Parameters.AddWithValue("@TableName", TableName);
+            da.Fill(dt);
+            return dt;
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
+    }
+
+
+
     public static string GetURL(string lang, string pagename, int organid, int categoryid, int mainid, int headerid)
     {
         string geturl = "";
@@ -490,6 +534,24 @@ InfoID,TableName from Slides where InfoID=@InfoID and TableName=@TableName", Sql
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select  ContactID,Contact" + lang + @" Name from Contact", SqlConn);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+    public DataTable GetQuestions(string lang, int MainID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"
+SELECT  QuestionID,MainID,QuestionTypeID,QuestionText_" + lang +@" as QuestionText ,AnswerText_" + lang +@" as AnswerText,ValidAnswer_" + lang +
+    @" as ValidAnswer,DetailsText_" + lang + @" as DetailsText FROM Questions where MainID=@MainID order by sortby", SqlConn);
+            
+            da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;
         }

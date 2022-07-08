@@ -15,6 +15,7 @@
         routes.MapPageRoute("category", "{lang}/category/{organid}/{categoryid}/{mainid}/{headerid}", "~/Category.aspx");
         routes.MapPageRoute("about", "{lang}/about", "~/About.aspx");
         routes.MapPageRoute("contact", "{lang}/contact", "~/Contact.aspx");
+        routes.MapPageRoute("questions", "{lang}/questions/{organid}/{categoryid}/{mainid}/{headerid}", "~/Questions.aspx");
         //routes.MapPageRoute("leadership", "{lang}/leadership/{mainid}/{headerid}", "~/leadership.aspx");
         //routes.MapPageRoute("leadershipOptional", "leadership/{mainid}/{headerid}", "~/leadership.aspx");
 

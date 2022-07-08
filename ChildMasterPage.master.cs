@@ -59,15 +59,7 @@ public partial class ChildMasterPage : System.Web.UI.MasterPage
         
         rptHeaderMenu.DataSource = dtleft;
         rptHeaderMenu.DataBind();
-        //string linkurl = Methods.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
-        //        mainid.ToParseInt(), 1);
-
-        //string active = "";
-        //if (linkurl == Methods.GetURL(lang, "leadership", organid.ToParseInt(), categoryid.ToParseInt(),
-        //    mainid.ToParseInt(), headerid))
-        //{
-        //    active = "active";
-        //}
+      
 
     }
 }
