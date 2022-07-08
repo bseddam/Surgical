@@ -561,6 +561,23 @@ SELECT  QuestionID,MainID,QuestionTypeID,QuestionText_" + lang +@" as QuestionTe
         }
     }
 
+    public DataTable GetLectures(string lang, int MainID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select LectureID,LectureName,MainID,Kurs,VideoURL_" + lang + @" VideoURL,SortBy
+  FROM Lectures where MainID=@MainID", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
 
 
 }
