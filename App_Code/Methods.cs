@@ -468,7 +468,7 @@ InfoID,TableName from Slides where InfoID=@InfoID and TableName=@TableName", Sql
     }
 
 
-    public DataTable GetAuthors(string lang, int QuestionID, string TableName)
+    public DataTable GetAuthorsQeustions(string lang, int QuestionID)
     {
         //try
         //{
@@ -478,11 +478,55 @@ case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu '
 when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
 else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
 from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
-inner join Questions q on q.QuestionID=ca.tableid where q.QuestionID=@QuestionID and TableName=@TableName ", SqlConn);
+inner join Questions q on q.QuestionID=ca.tableid where q.QuestionID=@QuestionID and TableName=N'Questions' ", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@QuestionID", QuestionID);
-            da.SelectCommand.Parameters.AddWithValue("@TableName", TableName);
+  
             da.Fill(dt);
             return dt;
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
+    }
+
+    public DataTable GetAuthorsLecture(string lang, int LectureID)
+    {
+        //try
+        //{
+        DataTable dt = new DataTable();
+        SqlDataAdapter da = new SqlDataAdapter(@"select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+inner join Lectures l on l.LectureID=ca.tableid where l.LectureID=@LectureID and TableName=N'Mühazirə' ", SqlConn);
+        da.SelectCommand.Parameters.AddWithValue("@LectureID", LectureID);
+        da.Fill(dt);
+        return dt;
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
+    }
+
+
+    public DataTable GetAuthorsSlide(string lang, int SlideID)
+    {
+        //try
+        //{
+        DataTable dt = new DataTable();
+        SqlDataAdapter da = new SqlDataAdapter(@"select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+inner join Slides s on s.SlideID=ca.tableid where s.SlideID=@SlideID and ca.TableName=N'Slide' ", SqlConn);
+        da.SelectCommand.Parameters.AddWithValue("@SlideID", SlideID);
+
+        da.Fill(dt);
+        return dt;
         //}
         //catch (Exception ex)
         //{
@@ -568,6 +612,24 @@ SELECT  QuestionID,MainID,QuestionTypeID,QuestionText_" + lang +@" as QuestionTe
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select LectureID,LectureName,MainID,Kurs,VideoURL_" + lang + @" VideoURL,SortBy
   FROM Lectures where MainID=@MainID", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    public DataTable GetEndoskopiya(string lang, int MainID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select EndoskopiyaID,EndoskopiyaName" + lang + @" EndoskopiyaName,
+MainID,MuayineUsulu" + lang + @" MuayineUsulu,Video" + lang + @" Video
+  FROM Endoskopiya where MainID=@MainID", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;

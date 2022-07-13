@@ -27,7 +27,7 @@ public partial class Questions : System.Web.UI.Page
         }
 
         string detailtext = db.GetMenuHeader(lang, 13).Rows[0]["Name"].ToParseStr();
-        string authortext = db.GetMenuHeader(lang, 15).Rows[0]["Name"].ToParseStr();
+        string authortext = db.GetHeaders(lang, 1, 11).Rows[0]["Name"].ToParseStr();
 
 
         DataTable dtquestion = db.GetQuestions(lang, mainid);
@@ -35,13 +35,13 @@ public partial class Questions : System.Web.UI.Page
         {
 
             string author = "";
-            DataTable dtauthors = db.GetAuthors(lang, drquestion["QuestionID"].ToParseInt(), "Questions");
+            DataTable dtauthors = db.GetAuthorsQeustions(lang, drquestion["QuestionID"].ToParseInt());
             foreach (DataRow drauthor in dtauthors.Rows)
             {
-                author = author + "<p>"+ drauthor["tamadi"].ToParseStr()+"</p>";
+                author = author + "<p>" + drauthor["tamadi"].ToParseStr() + "</p>";
             }
 
-            ltrlcontainer.Text = ltrlcontainer.Text+ @"<div class='odds_row '>
+            ltrlcontainer.Text = ltrlcontainer.Text + @"<div class='odds_row '>
                                 <div class='content_row '>
                                     <h3 class='title_second '>" + drquestion["QuestionText"].ToParseStr() + @"</h3>
                                 </div>
@@ -57,12 +57,12 @@ public partial class Questions : System.Web.UI.Page
                                                     </strong>
                                                 </p>
                                                 <p>
-                                                    "+ drquestion["DetailsText"].ToParseStr() + @"
+                                                    " + drquestion["DetailsText"].ToParseStr() + @"
                                                 </p>
                                             </div>
                                             <div class='odds_row '>
-                                                <h3 class='title_second '>"+ authortext + @" </h3>
-                                               "+ author + @"
+                                                <h3 class='title_second '>" + authortext + @" </h3>
+                                               " + author + @"
                                             </div>
                                         </div>
                                     </div>
