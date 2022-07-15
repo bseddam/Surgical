@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Authors : System.Web.UI.Page
+public partial class Reference : System.Web.UI.Page
 {
     Methods db = new Methods();
     protected void Page_Load(object sender, EventArgs e)
@@ -20,18 +20,23 @@ public partial class Authors : System.Web.UI.Page
         int categoryid = Page.RouteData.Values["categoryid"].ToParseInt();
         int headerid = Page.RouteData.Values["headerid"].ToParseInt();
         string lang = Config.getLang(Page);
-        DataTable dthead = db.GetHeaders(lang, 1, 11);
+        DataTable dthead = db.GetHeaders(lang, 1, 12);
         if (dthead.Rows.Count > 0)
         {
-            ltrlmuellif.Text = dthead.Rows[0]["Name"].ToParseStr();
+            ltrlreference.Text = dthead.Rows[0]["Name"].ToParseStr();
+        }
+        ltrlmenbeadi.Text = db.GetMenuHeader(lang, 20).Rows[0]["Name"].ToParseStr();
+        ltrldoi.Text = db.GetMenuHeader(lang, 21).Rows[0]["Name"].ToParseStr();
+        ltrlurl.Text = db.GetMenuHeader(lang, 22).Rows[0]["Name"].ToParseStr();
+        DataTable dtmain = db.GetMainByID(lang, mainid);
+        if (dtmain.Rows.Count > 0)
+        {
+            ltrldoitext.Text = dtmain.Rows[0]["DOI"].ToParseStr();
+            ltrlurltext.Text = dtmain.Rows[0]["URL"].ToParseStr();
         }
 
-       
-
-
- 
         string author = "";
-        DataTable dtauthors = db.GetAuthors(lang,mainid);
+        DataTable dtauthors = db.GetAuthors(lang, mainid);
         foreach (DataRow drauthor in dtauthors.Rows)
         {
             author = author + "<p>" + drauthor["tamadi"].ToParseStr() + "</p>";

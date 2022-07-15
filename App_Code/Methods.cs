@@ -126,7 +126,7 @@ convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoSho
 
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select HeaderID,LnkURL,HeaderName_" + lang +
-                " as Name FROM Headers where typeid=@typeid order by SortBy", SqlConn);
+                " as Name from Headers where typeid=@typeid order by SortBy", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@typeid", typeid);
             da.Fill(dt);
             return dt;
@@ -306,9 +306,9 @@ convert(nvarchar,UpdateTime,104) UpdateTime104,InfoShort_" + lang + " as InfoSho
         try
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(@"SELECT  MainID,MainName_" +
-              lang + " as Name,Information_" +
-              lang + " as Information FROM Main where MainID=@MainID order by SortBy", SqlConn);
+            SqlDataAdapter da = new SqlDataAdapter(@"SELECT  MainID,MainName_" + lang + " as Name,Information_" +
+              lang + @" as Information,DOI,URL
+      ,SortBy FROM Main where MainID=@MainID order by SortBy", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;
@@ -512,28 +512,8 @@ inner join Lectures l on l.LectureID=ca.tableid where l.LectureID=@LectureID and
     }
 
 
-    public DataTable GetAuthors(string lang)
-    {
-        //try
-        //{
-        DataTable dt = new DataTable();
-        SqlDataAdapter da = new SqlDataAdapter(@"select '<b>'+isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
-case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
-when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
-else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') +'</b>'+ isnull(' - '+Position_" + lang + @",'') tamadi,  isnull(' - '+Position_" + lang + @",'') vezife
-from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID  where  1=1 ", SqlConn);
-      
-        da.Fill(dt);
-        return dt;
-        //}
-        //catch (Exception ex)
-        //{
-        //    return null;
-        //}
-    }
 
-
-    public DataTable GetAuthorsSlide(string lang, int SlideID)
+    public DataTable GetAuthorsMyExprerience(string lang, int MenimTecrubemID)
     {
         //try
         //{
@@ -543,9 +523,8 @@ case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu '
 when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
 else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
 from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
-inner join Slides s on s.SlideID=ca.tableid where s.SlideID=@SlideID and ca.TableName=N'Slide' ", SqlConn);
-        da.SelectCommand.Parameters.AddWithValue("@SlideID", SlideID);
-
+inner join MenimTecrubem m on m.MenimTecrubemID=ca.tableid where m.MenimTecrubemID=1 and TableName=N'MenimTecrubem' ", SqlConn);
+        da.SelectCommand.Parameters.AddWithValue("@MenimTecrubemID", MenimTecrubemID);
         da.Fill(dt);
         return dt;
         //}
@@ -554,6 +533,53 @@ inner join Slides s on s.SlideID=ca.tableid where s.SlideID=@SlideID and ca.Tabl
         //    return null;
         //}
     }
+
+
+    public DataTable GetAuthors(string lang,int MainID)
+    {
+        //try
+        //{
+        DataTable dt = new DataTable();
+        SqlDataAdapter da = new SqlDataAdapter(@"select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+left join Questions q on q.QuestionID=ca.tableid left join Lectures l on l.LectureID=ca.tableid
+where (ca.TableName=N'Questions' or ca.TableName=N'Mühazirə' or ca.TableName=N'MenimTecrubem' ) 
+and q.MainID=@MainID and l.MainID=@MainID", SqlConn);
+        da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+        da.Fill(dt);
+        return dt;
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
+    }
+
+
+//    public DataTable GetAuthorsSlide(string lang, int SlideID)
+//    {
+//        //try
+//        //{
+//        DataTable dt = new DataTable();
+//        SqlDataAdapter da = new SqlDataAdapter(@"select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+//case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+//when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+//else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+//from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+//inner join Slides s on s.SlideID=ca.tableid where s.SlideID=@SlideID and ca.TableName=N'Slide' ", SqlConn);
+//        da.SelectCommand.Parameters.AddWithValue("@SlideID", SlideID);
+
+//        da.Fill(dt);
+//        return dt;
+//        //}
+//        //catch (Exception ex)
+//        //{
+//        //    return null;
+//        //}
+//    }
 
 
 
@@ -633,6 +659,24 @@ SELECT  QuestionID,MainID,QuestionTypeID,QuestionText_" + lang +@" as QuestionTe
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(@"select LectureID,LectureName,MainID,Kurs,VideoURL_" + lang + @" VideoURL,SortBy
   FROM Lectures where MainID=@MainID", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    public DataTable GetMyExperinces(string lang, int MainID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select  MenimTecrubemID
+      ,MenimTecrubemName" + lang + @" MenimTecrubemName,MainID
+      ,MenimTecrubem" + lang + @" MenimTecrubem from MenimTecrubem where MainID=@MainID", SqlConn);
             da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
             da.Fill(dt);
             return dt;

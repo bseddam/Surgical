@@ -47,7 +47,7 @@ public partial class Slides : System.Web.UI.Page
 
 
         string author = "";
-        DataTable dtauthors = db.GetAuthorsSlide(lang, dtlecture.Rows[0]["LectureID"].ToParseInt());
+        DataTable dtauthors = db.GetAuthors(lang, mainid);
         foreach (DataRow drauthor in dtauthors.Rows)
         {
             author = author + "<p>" + drauthor["tamadi"].ToParseStr() + "</p>";

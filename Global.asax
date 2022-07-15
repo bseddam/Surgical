@@ -20,7 +20,8 @@
         routes.MapPageRoute("slide", "{lang}/slide/{organid}/{categoryid}/{mainid}/{headerid}", "~/Slides.aspx");
         routes.MapPageRoute("endoskopiya", "{lang}/endoskopiya/{organid}/{categoryid}/{mainid}/{headerid}", "~/Endoskopiya.aspx");
         routes.MapPageRoute("authors", "{lang}/authors/{organid}/{categoryid}/{mainid}/{headerid}", "~/Authors.aspx");
-
+        routes.MapPageRoute("reference", "{lang}/reference/{organid}/{categoryid}/{mainid}/{headerid}", "~/Reference.aspx");
+        routes.MapPageRoute("myexperience", "{lang}/myexperience/{organid}/{categoryid}/{mainid}/{headerid}", "~/MyExperience.aspx");
         //routes.MapPageRoute("leadership", "{lang}/leadership/{mainid}/{headerid}", "~/leadership.aspx");
         //routes.MapPageRoute("leadershipOptional", "leadership/{mainid}/{headerid}", "~/leadership.aspx");
 
