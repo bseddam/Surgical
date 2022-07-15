@@ -52,6 +52,6 @@ public partial class Slides : System.Web.UI.Page
         {
             author = author + "<p>" + drauthor["tamadi"].ToParseStr() + "</p>";
         }
-          ltrlmuellif1.Text = author;
+        ltrlmuellif1.Text = author;
     }
 }
