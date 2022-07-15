@@ -512,6 +512,27 @@ inner join Lectures l on l.LectureID=ca.tableid where l.LectureID=@LectureID and
     }
 
 
+    public DataTable GetAuthors(string lang)
+    {
+        //try
+        //{
+        DataTable dt = new DataTable();
+        SqlDataAdapter da = new SqlDataAdapter(@"select '<b>'+isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') +'</b>'+ isnull(' - '+Position_" + lang + @",'') tamadi,  isnull(' - '+Position_" + lang + @",'') vezife
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID  where  1=1 ", SqlConn);
+      
+        da.Fill(dt);
+        return dt;
+        //}
+        //catch (Exception ex)
+        //{
+        //    return null;
+        //}
+    }
+
+
     public DataTable GetAuthorsSlide(string lang, int SlideID)
     {
         //try
