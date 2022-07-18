@@ -26,7 +26,7 @@
                                         </div>
                                         <div class="odds_row">
                                             <div class="opr_title">
-                                                   <%#Eval("MainName").ToParseStr()%>
+                                                <%#Eval("MainName").ToParseStr()%>
                                             </div>
                                         </div>
                                         <div class="odds_row">

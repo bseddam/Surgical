@@ -467,6 +467,25 @@ InfoID,TableName from Slides where InfoID=@InfoID and TableName=@TableName", Sql
         }
     }
 
+    public DataTable GetAllSlides(string lang,int MainID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(@"select SlideID,SlideName_" + lang + @" Name,SlideURL_" + lang + @" SlideURL,
+s.InfoID,TableName,Kurs from Slides s
+inner join Informations i on s.InfoID=i.InfoID
+inner join Main m on i.mainid=m.mainid
+where  i.MainID=@MainID", SqlConn);
+            da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
+            da.Fill(dt);
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
 
     public DataTable GetAuthorsQeustions(string lang, int QuestionID)
     {
@@ -545,9 +564,22 @@ case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu '
 when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
 else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
 from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
-left join Questions q on q.QuestionID=ca.tableid left join Lectures l on l.LectureID=ca.tableid
-where (ca.TableName=N'Questions' or ca.TableName=N'Mühazirə' or ca.TableName=N'MenimTecrubem' ) 
-and q.MainID=@MainID and l.MainID=@MainID", SqlConn);
+inner join Questions q on q.QuestionID=ca.tableid and ca.TableName=N'Questions' and q.MainID=@MainID
+union
+select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+inner join Lectures l on l.LectureID=ca.tableid and ca.TableName=N'Mühazirə' and l.MainID=@MainID
+union
+select isnull(a.AuthorName_" + lang + @",'')+isnull(' '+a.AuthorFName_" + lang + @",'')+
+case when a.Gender=1 and AuthorFName_" + lang + @" is not null then N' oğlu ' 
+when a.Gender=2 and AuthorFName_" + lang + @" is not null then N' qızı ' 
+else ' ' end + isnull(a.AuthorSurName_" + lang + @",'') + isnull(' - '+Position_" + lang + @",'') tamadi
+from ConnAuthorAll ca inner join authors a on ca.AuthorsID=a.AuthorID 
+inner join MenimTecrubem mt on mt.MenimTecrubemID=ca.tableid and ca.TableName=N'MenimTecrubem' and mt.MainID=@MainID
+", SqlConn);
         da.SelectCommand.Parameters.AddWithValue("@MainID", MainID);
         da.Fill(dt);
         return dt;

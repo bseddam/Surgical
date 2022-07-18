@@ -31,27 +31,31 @@ public partial class Slides : System.Web.UI.Page
         ltrlorgan.Text = db.GetMenuHeader(lang, 17).Rows[0]["Name"].ToParseStr();
         lrtlkurs.Text = db.GetMenuHeader(lang, 18).Rows[0]["Name"].ToParseStr();
         //ltrlvideo.Text = db.GetMenuHeader(lang, 19).Rows[0]["Name"].ToParseStr();
-        ltrlmuellif.Text = db.GetHeaders(lang, 1, 11).Rows[0]["Name"].ToParseStr();
+        //ltrlmuellif.Text = db.GetHeaders(lang, 1, 11).Rows[0]["Name"].ToParseStr();
         //ltrlmain.Text = db.GetMainByID(lang, mainid).Rows[0]["Name"].ToParseStr();
 
         ltrlorqan.Text = db.GetOrganByID(lang, organid).Rows[0]["Name"].ToParseStr();
 
 
 
-        DataTable dtlecture = db.GetLectures(lang, mainid);
+        DataTable dtallslide = db.GetAllSlides(lang, mainid);
 
-
+        rpslides.DataSource = dtallslide;
+        rpslides.DataBind();
         //ltrllecture.Text = dtlecture.Rows[0]["LectureName"].ToParseStr();
-        ltrlcourse.Text = dtlecture.Rows[0]["Kurs"].ToParseStr();
+        if (dtallslide != null && dtallslide.Rows.Count>0)
+        {
+            ltrlcourse.Text = dtallslide.Rows[0]["Kurs"].ToParseStr();
+        }
         //ltrlvideo1.Text = dtlecture.Rows[0]["VideoURL"].ToParseStr();
 
 
-        string author = "";
-        DataTable dtauthors = db.GetAuthors(lang, mainid);
-        foreach (DataRow drauthor in dtauthors.Rows)
-        {
-            author = author + "<p>" + drauthor["tamadi"].ToParseStr() + "</p>";
-        }
-        ltrlmuellif1.Text = author;
+        //string author = "";
+        //DataTable dtauthors = db.GetAuthors(lang, mainid);
+        //foreach (DataRow drauthor in dtauthors.Rows)
+        //{
+        //    author = author + "<p>" + drauthor["tamadi"].ToParseStr() + "</p>";
+        //}
+        //ltrlmuellif1.Text = author;
     }
 }

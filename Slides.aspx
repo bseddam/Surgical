@@ -81,70 +81,20 @@
 
                                     <div class="demo-gallery">
                                         <ul id="lightgallery" class="prosmotr_ul lightgallery">
-                                            <li data-responsive="img/image1.png" data-src="img/image1.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image1.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image2.png" data-src="img/image2.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image2.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image1.png" data-src="img/image1.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image1.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image2.png" data-src="img/image2.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image2.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image1.png" data-src="img/image1.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image1.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image2.png" data-src="img/image2.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image2.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image1.png" data-src="img/image1.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image1.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li data-responsive="img/image2.png" data-src="img/image2.png" data-sub-html="">
-                                                <a href="">
-                                                    <img src="img/image2.png" alt="" class="product_gallery_images_upload img-responsive">
-                                                    <div class="demo-gallery-poster">
-                                                        <img src="img/icons/zoom.png">
-                                                    </div>
-                                                </a>
-                                            </li>
+
+
+                                            <asp:Repeater ID="rpslides" runat="server">
+                                                <ItemTemplate>
+                                                    <li data-responsive="/<%#Eval("SlideURL").ToParseStr()%>" data-src="/<%#Eval("SlideURL").ToParseStr()%>" data-sub-html="">
+                                                        <a href="">
+                                                            <img src="/<%#Eval("SlideURL").ToParseStr()%>" alt="" class="product_gallery_images_upload img-responsive">
+                                                            <div class="demo-gallery-poster">
+                                                                <img src="img/icons/zoom.png">
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
 
                                         </ul>
                                     </div>
@@ -154,11 +104,11 @@
 
                             </div>
                         </div>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="odds_row ">
+                <%--<div class="odds_row ">
                 <div class="odds_row ">
                     <div class="content_row row_inner ">
                         <h3 class="title_second ">
@@ -171,13 +121,12 @@
                         </div>
                     </div>
                 </div>
+            </div>--%>
             </div>
 
+
+
         </div>
-
-
-
-    </div>
 
 
     </div>
