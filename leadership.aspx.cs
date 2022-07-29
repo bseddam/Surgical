@@ -55,7 +55,7 @@ public partial class leadership : System.Web.UI.Page
                                             </div>
                                             <div class='odds_row '>
                                                 <div class='content_row row_inner " + drshortdetails["ShortViewbtn"].ToParseStr() + @"' style='" + drshortdetails["Short"].ToParseStr() + @"'>
-                                                    <h3 class='title_second '>" + drshortdetails["Short_Name"].ToParseStr() + @"</h3>
+                                                     <!-- <h3 class='title_second '>" + drshortdetails["Short_Name"].ToParseStr() + @"</h3>-->
                                                     <div class='" + drshortdetails["ShortViewpnl"].ToParseStr() + @" '>
                                                         <div class='content_inner clearfix'>
                                                          <div class='conten_text '>
@@ -67,7 +67,7 @@ public partial class leadership : System.Web.UI.Page
                                             </div>
                                             <div class='odds_row '>
                                                 <div class='content_row row_inner " + drshortdetails["DetailViewbtn"].ToParseStr() + @"' style='" + drshortdetails["Detail"].ToParseStr() + @"'>
-                                                    <h3 class='title_second '>" + drshortdetails["Detail_Name"].ToParseStr() + @"</h3>
+                                                     <!-- <h3 class='title_second '>" + drshortdetails["Detail_Name"].ToParseStr() + @"</h3>-->
                                                     <div class='" + drshortdetails["DetailViewpnl"].ToParseStr() + @" '>
                                                         <div class='content_inner clearfix'>
                                                             <div class='conten_text '>
@@ -79,7 +79,7 @@ public partial class leadership : System.Web.UI.Page
                                             </div>
                                             <div class='odds_row '>
                                                 <div class='content_row row_inner ' style='" + drshortdetails["Slide"].ToParseStr() + @"'>
-                                                    <h3 class='title_second '>" + drshortdetails["Slide_Name"].ToParseStr() + @" </h3>
+                                                     <!-- <h3 class='title_second '>" + drshortdetails["Slide_Name"].ToParseStr() + @" </h3>-->
                                                     <div class='content_inner clearfix'>
 
                                                         <!-----------Gallery Start------------->
@@ -87,7 +87,7 @@ public partial class leadership : System.Web.UI.Page
 
                                                             <div class='demo-gallery'>
                                                                 <ul id='lightgallery' class='prosmotr_ul lightgallery'>
-                                                                    "+slidetext+@"
+                                                                    " + slidetext+@"
                                                                    
                                                                     
                                                                 </ul>
